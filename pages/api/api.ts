@@ -20,4 +20,3 @@ export function generateSmolURL() {
   const rand = min + Math.floor(Math.random() * (max - min));
   return rand
 }
-
