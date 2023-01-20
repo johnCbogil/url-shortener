@@ -11,7 +11,7 @@ export default function handler(
 ) {
   const rand = generateSmolURL()
   const inputURL = req.body['key']['longURL']
-  res.status(200).json({ response: inputURL })
+  res.status(200).json({ response: rand })
 }
 
 export function generateSmolURL() {
