@@ -25,13 +25,11 @@ export function generateSmolURL() {
 export default async (req: any, res: any) => {
   try {
       const client = await clientPromise;
-      const db = client.db("sample_mflix");
+      const db = client.db("urls");
 
       const movies = await db
-          .collection("movies")
+          .collection("urls")
           .find({})
-          .sort({ metacritic: -1 })
-          .limit(10)
           .toArray();
 
       res.json(movies);
