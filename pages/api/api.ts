@@ -11,15 +11,16 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const rand = generateSmolURL()
-  const long = req.body['key']['longURL']
-  // write to db wiht input
+  var long = req.body['key']['longURL']
+  if (!long.startsWith("https://", 0)) {
+    long = "https://" + long
+  }
 
   try {
     const client = await clientPromise;
     const db = client.db("urls");
     const obj = {short: rand, long: long};
     const result = await db.collection('urls').insertOne(obj)   
-    // console.log(result)
     res.status(200).json({ response: result })
   } catch(error) {
     console.log(error)
