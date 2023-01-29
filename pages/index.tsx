@@ -11,7 +11,8 @@ export default function Home() {
   }
 
   const handleClick = async () => {
-    const response = await fetch('http://localhost:3000/api/api', {
+    const host = process.env.HOST
+    const response = await fetch(host + '/api/api', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -20,7 +21,7 @@ export default function Home() {
     });
     const json = await response.json();
     console.log("json " + json.response)
-    setShortURL("http://localhost:3000/" + json.response);
+    setShortURL(host + json.response);
   }
 
   return (
