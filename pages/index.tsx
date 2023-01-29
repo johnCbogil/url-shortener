@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import React, { useState } from 'react';
+import Link from 'next/link'
 
 export default function Home() {
   const [longURL, setLongURL] = useState("");
+  const [shortURL, setShortURL] = useState("");
 
   const handleChange = (event: any) => {
     setLongURL(event.target.value);
@@ -17,7 +19,8 @@ export default function Home() {
       body: JSON.stringify({ key: {longURL} })
     });
     const json = await response.json();
-    console.log(json);
+    console.log("json " + json.response)
+    setShortURL("http://localhost:3000/" + json.response);
   }
 
   return (
@@ -36,6 +39,11 @@ export default function Home() {
           <input type="text" name="name" value={longURL} onChange={handleChange} />
         </label>
         <button onClick={handleClick}>Make it smol.</button>
+
+        <h2>Your new smol URL is:       <Link href={`${shortURL}`}>
+            {shortURL}
+          </Link> </h2>
+  
       </main>
     </>
   )

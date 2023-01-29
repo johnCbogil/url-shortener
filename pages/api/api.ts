@@ -21,7 +21,7 @@ export default async function handler(
     const db = client.db("urls");
     const obj = {short: rand, long: long};
     const result = await db.collection('urls').insertOne(obj)   
-    res.status(200).json({ response: result })
+    res.status(200).json({ response: rand })
   } catch(error) {
     console.log(error)
   }
