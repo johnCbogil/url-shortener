@@ -13,7 +13,7 @@ export default function Home() {
   const handleClick = async () => {
     const host = process.env.NEXT_PUBLIC_API_URL
     console.log("Host " + host)
-    const response = await fetch(host + '/api/api', {
+    const response = await fetch(host + 'api/api', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
